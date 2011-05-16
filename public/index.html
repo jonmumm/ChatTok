@@ -72,30 +72,31 @@
 						session.signal();
 					}
 				})
-				
-				// Clear the text input
-				$("#chatBody").val('');
 			}
 			
 			// Initialize UI bindings
 			$(window).load(function() {				
 				// Add chat entry if enter button clicked
 				$("#chatButton").bind('click', function() {
-					// If body is empty, don't do anything
-					if (!$("#chatBody").val($("#chatBody").val())) return;
-					
-					postChatEntry($("#chatBody").val());
+					processChatEntry();
 				});
 				
 				// Add chat entry if enter pressed in text box
 				$("#chatBody").keypress(function(e) {
 					if (e.keyCode == 13) {
-						// If body is empty, don't do anything
-						if (!$("#chatBody").val()) return;
-						
-						postChatEntry($("#chatBody").val());
+						processChatEntry();
 					}
 				})
+				
+				function processChatEntry() {
+					// If body is empty, don't do anything
+					if (!$("#chatBody").val()) return;
+					
+					postChatEntry($("#chatBody").val());
+					
+					// Clear the text input
+					$("#chatBody").val('');
+				}
 			})
 		</script>
 		
