@@ -30,23 +30,37 @@
 				// This class does all the layout management for us
 				OT_Widget.init(session, "streamContainer", 800, 300);
 				
+				// Set up event handler to listen for signals
 				session.addEventListener("signalReceived", signalReceivedHandler);
+				
 				session.connect(apiKey, token);
 			})();
 		
-			// Event handler for receiving signals called by session.signal() from other clients in session
+			// Event handler for receiving signals called 
+			// by session.signal() from other clients in session
 			function signalReceivedHandler(event) {
 				getChatEntry(event.fromConnection.connectionId);
 			}
 			
+			
+			// Gets the latest chat entry from the database 
+			// given somebody's connectionId
+			function getChatEntry(connectionId) {
+				$.ajax({
+					url: '/chat_entries/latest/' + connectionId,
+					success: function(data) {
+						$("#chat").append("<li><strong>" 
+							+ data.chat_entry.connectionId 
+							+ ":</strong> " + data.chat_entry.body + "</li>")
+					}
+				})
+			}
+			
 			// Posts a new chat entry in to the database
-			function postChatEntry() {
-				// If body is empty, don't do anything
-				if (!$("#chatBody").val()) return;
-				
+			function postChatEntry(body) {				
 				var data = {
 					connectionId: session.connection.connectionId,
-					body: $("#chatBody").val()
+					body: body
 				}
 				
 				$.ajax({
@@ -54,6 +68,7 @@
 					data: data,
 					type: 'POST',
 					success: function(data) {
+						// Signal to other clients that we have inserted new data
 						session.signal();
 					}
 				})
@@ -62,27 +77,23 @@
 				$("#chatBody").val('');
 			}
 			
-			// Gets the latest chat entry from the database given somebody's connectionId
-			function getChatEntry(connectionId) {
-				$.ajax({
-					url: '/chat_entries/latest/' + connectionId,
-					success: function(data) {
-						$("#chat").append("<li><strong>" + data.chat_entry.connectionId + ":</strong> " + data.chat_entry.body + "</li>")
-					}
-				})
-			}
-			
 			// Initialize UI bindings
-			$(window).load(function() {
+			$(window).load(function() {				
 				// Add chat entry if enter button clicked
 				$("#chatButton").bind('click', function() {
-					postChatEntry();
+					// If body is empty, don't do anything
+					if (!$("#chatBody").val($("#chatBody").val())) return;
+					
+					postChatEntry($("#chatBody").val());
 				});
 				
 				// Add chat entry if enter pressed in text box
 				$("#chatBody").keypress(function(e) {
 					if (e.keyCode == 13) {
-						postChatEntry();
+						// If body is empty, don't do anything
+						if (!$("#chatBody").val()) return;
+						
+						postChatEntry($("#chatBody").val());
 					}
 				})
 			})
@@ -92,10 +103,9 @@
   <body>
 		<div id="streamContainer" style="background: black;"></div>
 		<h2>Chat</h2>
-		<ul id="chat">
-			
-		</ul>
-		<input type="text" id="chatBody" />
-		<button id="chatButton">Enter</button>
+		<input type="text" id="chatBody" /><button id="chatButton">Enter</button>	
+		<ul id="chat"></ul>
+		
+
   </body>
 </html>

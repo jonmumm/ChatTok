@@ -36,3 +36,315 @@ Migrating to CreateChatEntries (20110513225244)
   [1m[35mChatEntry Load (0.2ms)[0m  SELECT "chat_entries".* FROM "chat_entries" WHERE "chat_entries"."id" = 0 LIMIT 1
   [1m[36mChatEntry Load (0.4ms)[0m  [1mSELECT "chat_entries".* FROM "chat_entries" WHERE "chat_entries"."id" = 1 LIMIT 1[0m
   [1m[35mChatEntry Load (0.4ms)[0m  SELECT "chat_entries".* FROM "chat_entries" WHERE "chat_entries"."id" = 2 LIMIT 1
+
+
+Started POST "/chat_entries/add" for 127.0.0.1 at Mon May 16 10:42:01 -0700 2011
+  Processing by ChatEntriesController#add as 
+  Parameters: {"body"=>"asdfasfdasf", "connectionId"=>"70f8552bb46c7fc43a02f7f64ca0aa52600b5633"}
+  [1m[36mSQL (0.2ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mAREL (0.5ms)[0m  INSERT INTO "chat_entries" ("updated_at", "connectionId", "created_at", "body") VALUES ('2011-05-16 17:42:01.723548', '70f8552bb46c7fc43a02f7f64ca0aa52600b5633', '2011-05-16 17:42:01.723548', 'asdfasfdasf')
+Completed 200 OK in 150ms (Views: 15.7ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/chat_entries/latest/70f8552bb46c7fc43a02f7f64ca0aa52600b5633" for 127.0.0.1 at Mon May 16 10:42:01 -0700 2011
+  Processing by ChatEntriesController#latest as 
+  Parameters: {"connectionId"=>"70f8552bb46c7fc43a02f7f64ca0aa52600b5633"}
+  [1m[36mChatEntry Load (0.3ms)[0m  [1mSELECT "chat_entries".* FROM "chat_entries" WHERE (connectionId = '70f8552bb46c7fc43a02f7f64ca0aa52600b5633') ORDER BY chat_entries.id DESC LIMIT 1[0m
+Completed 200 OK in 24ms (Views: 18.3ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/chat_entries/add" for 127.0.0.1 at Mon May 16 10:42:03 -0700 2011
+  Processing by ChatEntriesController#add as 
+  Parameters: {"body"=>"asdfasdf", "connectionId"=>"70f8552bb46c7fc43a02f7f64ca0aa52600b5633"}
+  [1m[35mAREL (0.4ms)[0m  INSERT INTO "chat_entries" ("connectionId", "updated_at", "created_at", "body") VALUES ('70f8552bb46c7fc43a02f7f64ca0aa52600b5633', '2011-05-16 17:42:03.513872', '2011-05-16 17:42:03.513872', 'asdfasdf')
+Completed 200 OK in 27ms (Views: 11.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/chat_entries/latest/70f8552bb46c7fc43a02f7f64ca0aa52600b5633" for 127.0.0.1 at Mon May 16 10:42:03 -0700 2011
+  Processing by ChatEntriesController#latest as 
+  Parameters: {"connectionId"=>"70f8552bb46c7fc43a02f7f64ca0aa52600b5633"}
+  [1m[36mChatEntry Load (0.4ms)[0m  [1mSELECT "chat_entries".* FROM "chat_entries" WHERE (connectionId = '70f8552bb46c7fc43a02f7f64ca0aa52600b5633') ORDER BY chat_entries.id DESC LIMIT 1[0m
+Completed 200 OK in 23ms (Views: 15.9ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/chat_entries/add" for 127.0.0.1 at Mon May 16 10:42:16 -0700 2011
+  Processing by ChatEntriesController#add as 
+  Parameters: {"body"=>"asfdsaf", "connectionId"=>"449163bc290149fd5ae4aa9e451c2bfca0327294"}
+  [1m[35mAREL (0.5ms)[0m  INSERT INTO "chat_entries" ("created_at", "connectionId", "body", "updated_at") VALUES ('2011-05-16 17:42:16.145713', '449163bc290149fd5ae4aa9e451c2bfca0327294', 'asfdsaf', '2011-05-16 17:42:16.145713')
+Completed 200 OK in 33ms (Views: 11.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/chat_entries/latest/449163bc290149fd5ae4aa9e451c2bfca0327294" for 127.0.0.1 at Mon May 16 10:42:16 -0700 2011
+  Processing by ChatEntriesController#latest as 
+  Parameters: {"connectionId"=>"449163bc290149fd5ae4aa9e451c2bfca0327294"}
+  [1m[36mChatEntry Load (0.4ms)[0m  [1mSELECT "chat_entries".* FROM "chat_entries" WHERE (connectionId = '449163bc290149fd5ae4aa9e451c2bfca0327294') ORDER BY chat_entries.id DESC LIMIT 1[0m
+Completed 200 OK in 108ms (Views: 101.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/chat_entries/latest/449163bc290149fd5ae4aa9e451c2bfca0327294" for 127.0.0.1 at Mon May 16 10:42:16 -0700 2011
+  Processing by ChatEntriesController#latest as 
+  Parameters: {"connectionId"=>"449163bc290149fd5ae4aa9e451c2bfca0327294"}
+  [1m[35mChatEntry Load (3.2ms)[0m  SELECT "chat_entries".* FROM "chat_entries" WHERE (connectionId = '449163bc290149fd5ae4aa9e451c2bfca0327294') ORDER BY chat_entries.id DESC LIMIT 1
+Completed 200 OK in 43ms (Views: 32.3ms | ActiveRecord: 3.2ms)
+
+
+Started POST "/chat_entries/add" for 127.0.0.1 at Mon May 16 10:42:17 -0700 2011
+  Processing by ChatEntriesController#add as 
+  Parameters: {"body"=>"asdfasdf", "connectionId"=>"449163bc290149fd5ae4aa9e451c2bfca0327294"}
+  [1m[36mAREL (0.4ms)[0m  [1mINSERT INTO "chat_entries" ("connectionId", "updated_at", "created_at", "body") VALUES ('449163bc290149fd5ae4aa9e451c2bfca0327294', '2011-05-16 17:42:17.578310', '2011-05-16 17:42:17.578310', 'asdfasdf')[0m
+Completed 200 OK in 26ms (Views: 10.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/chat_entries/latest/449163bc290149fd5ae4aa9e451c2bfca0327294" for 127.0.0.1 at Mon May 16 10:42:17 -0700 2011
+  Processing by ChatEntriesController#latest as 
+  Parameters: {"connectionId"=>"449163bc290149fd5ae4aa9e451c2bfca0327294"}
+  [1m[35mChatEntry Load (0.4ms)[0m  SELECT "chat_entries".* FROM "chat_entries" WHERE (connectionId = '449163bc290149fd5ae4aa9e451c2bfca0327294') ORDER BY chat_entries.id DESC LIMIT 1
+Completed 200 OK in 21ms (Views: 15.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/chat_entries/latest/449163bc290149fd5ae4aa9e451c2bfca0327294" for 127.0.0.1 at Mon May 16 10:42:18 -0700 2011
+  Processing by ChatEntriesController#latest as 
+  Parameters: {"connectionId"=>"449163bc290149fd5ae4aa9e451c2bfca0327294"}
+  [1m[36mChatEntry Load (0.5ms)[0m  [1mSELECT "chat_entries".* FROM "chat_entries" WHERE (connectionId = '449163bc290149fd5ae4aa9e451c2bfca0327294') ORDER BY chat_entries.id DESC LIMIT 1[0m
+Completed 200 OK in 134ms (Views: 126.8ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/chat_entries/add" for 127.0.0.1 at Mon May 16 10:43:14 -0700 2011
+  Processing by ChatEntriesController#add as 
+  Parameters: {"body"=>"dsafsafsad", "connectionId"=>"03915fa90d975c199b5e33a0e2b4846b90f7c18d"}
+  [1m[35mAREL (0.4ms)[0m  INSERT INTO "chat_entries" ("created_at", "updated_at", "connectionId", "body") VALUES ('2011-05-16 17:43:14.755614', '2011-05-16 17:43:14.755614', '03915fa90d975c199b5e33a0e2b4846b90f7c18d', 'dsafsafsad')
+Completed 200 OK in 28ms (Views: 12.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/chat_entries/latest/03915fa90d975c199b5e33a0e2b4846b90f7c18d" for 127.0.0.1 at Mon May 16 10:43:14 -0700 2011
+  Processing by ChatEntriesController#latest as 
+  Parameters: {"connectionId"=>"03915fa90d975c199b5e33a0e2b4846b90f7c18d"}
+  [1m[36mChatEntry Load (1.1ms)[0m  [1mSELECT "chat_entries".* FROM "chat_entries" WHERE (connectionId = '03915fa90d975c199b5e33a0e2b4846b90f7c18d') ORDER BY chat_entries.id DESC LIMIT 1[0m
+Completed 200 OK in 26ms (Views: 17.6ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/chat_entries/latest/03915fa90d975c199b5e33a0e2b4846b90f7c18d" for 127.0.0.1 at Mon May 16 10:43:15 -0700 2011
+  Processing by ChatEntriesController#latest as 
+  Parameters: {"connectionId"=>"03915fa90d975c199b5e33a0e2b4846b90f7c18d"}
+  [1m[35mChatEntry Load (0.4ms)[0m  SELECT "chat_entries".* FROM "chat_entries" WHERE (connectionId = '03915fa90d975c199b5e33a0e2b4846b90f7c18d') ORDER BY chat_entries.id DESC LIMIT 1
+Completed 200 OK in 26ms (Views: 16.8ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/chat_entries/add" for 127.0.0.1 at Mon May 16 10:43:17 -0700 2011
+  Processing by ChatEntriesController#add as 
+  Parameters: {"body"=>"as safd asdf asdf", "connectionId"=>"03915fa90d975c199b5e33a0e2b4846b90f7c18d"}
+  [1m[36mAREL (0.4ms)[0m  [1mINSERT INTO "chat_entries" ("body", "updated_at", "created_at", "connectionId") VALUES ('as safd asdf asdf', '2011-05-16 17:43:17.149082', '2011-05-16 17:43:17.149082', '03915fa90d975c199b5e33a0e2b4846b90f7c18d')[0m
+Completed 200 OK in 41ms (Views: 12.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/chat_entries/latest/03915fa90d975c199b5e33a0e2b4846b90f7c18d" for 127.0.0.1 at Mon May 16 10:43:17 -0700 2011
+  Processing by ChatEntriesController#latest as 
+  Parameters: {"connectionId"=>"03915fa90d975c199b5e33a0e2b4846b90f7c18d"}
+  [1m[35mChatEntry Load (0.4ms)[0m  SELECT "chat_entries".* FROM "chat_entries" WHERE (connectionId = '03915fa90d975c199b5e33a0e2b4846b90f7c18d') ORDER BY chat_entries.id DESC LIMIT 1
+Completed 200 OK in 24ms (Views: 17.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/chat_entries/latest/03915fa90d975c199b5e33a0e2b4846b90f7c18d" for 127.0.0.1 at Mon May 16 10:43:17 -0700 2011
+  Processing by ChatEntriesController#latest as 
+  Parameters: {"connectionId"=>"03915fa90d975c199b5e33a0e2b4846b90f7c18d"}
+  [1m[36mChatEntry Load (0.6ms)[0m  [1mSELECT "chat_entries".* FROM "chat_entries" WHERE (connectionId = '03915fa90d975c199b5e33a0e2b4846b90f7c18d') ORDER BY chat_entries.id DESC LIMIT 1[0m
+Completed 200 OK in 31ms (Views: 22.6ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/chat_entries/add" for 127.0.0.1 at Mon May 16 10:43:19 -0700 2011
+  Processing by ChatEntriesController#add as 
+  Parameters: {"body"=>" sadfadsfsa asdf asdf", "connectionId"=>"03915fa90d975c199b5e33a0e2b4846b90f7c18d"}
+  [1m[35mAREL (0.4ms)[0m  INSERT INTO "chat_entries" ("connectionId", "body", "created_at", "updated_at") VALUES ('03915fa90d975c199b5e33a0e2b4846b90f7c18d', ' sadfadsfsa asdf asdf', '2011-05-16 17:43:19.460362', '2011-05-16 17:43:19.460362')
+Completed 200 OK in 101ms (Views: 10.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/chat_entries/latest/03915fa90d975c199b5e33a0e2b4846b90f7c18d" for 127.0.0.1 at Mon May 16 10:43:19 -0700 2011
+  Processing by ChatEntriesController#latest as 
+  Parameters: {"connectionId"=>"03915fa90d975c199b5e33a0e2b4846b90f7c18d"}
+  [1m[36mChatEntry Load (0.5ms)[0m  [1mSELECT "chat_entries".* FROM "chat_entries" WHERE (connectionId = '03915fa90d975c199b5e33a0e2b4846b90f7c18d') ORDER BY chat_entries.id DESC LIMIT 1[0m
+Completed 200 OK in 21ms (Views: 14.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/chat_entries/latest/03915fa90d975c199b5e33a0e2b4846b90f7c18d" for 127.0.0.1 at Mon May 16 10:43:19 -0700 2011
+  Processing by ChatEntriesController#latest as 
+  Parameters: {"connectionId"=>"03915fa90d975c199b5e33a0e2b4846b90f7c18d"}
+  [1m[35mChatEntry Load (0.4ms)[0m  SELECT "chat_entries".* FROM "chat_entries" WHERE (connectionId = '03915fa90d975c199b5e33a0e2b4846b90f7c18d') ORDER BY chat_entries.id DESC LIMIT 1
+Completed 200 OK in 26ms (Views: 20.8ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/chat_entries/add" for 127.0.0.1 at Mon May 16 10:43:24 -0700 2011
+  Processing by ChatEntriesController#add as 
+  Parameters: {"body"=>"sdfasfsa asf", "connectionId"=>"449163bc290149fd5ae4aa9e451c2bfca0327294"}
+  [1m[36mAREL (0.4ms)[0m  [1mINSERT INTO "chat_entries" ("connectionId", "body", "updated_at", "created_at") VALUES ('449163bc290149fd5ae4aa9e451c2bfca0327294', 'sdfasfsa asf', '2011-05-16 17:43:24.961996', '2011-05-16 17:43:24.961996')[0m
+Completed 200 OK in 30ms (Views: 11.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/chat_entries/latest/449163bc290149fd5ae4aa9e451c2bfca0327294" for 127.0.0.1 at Mon May 16 10:43:25 -0700 2011
+  Processing by ChatEntriesController#latest as 
+  Parameters: {"connectionId"=>"449163bc290149fd5ae4aa9e451c2bfca0327294"}
+  [1m[35mChatEntry Load (0.5ms)[0m  SELECT "chat_entries".* FROM "chat_entries" WHERE (connectionId = '449163bc290149fd5ae4aa9e451c2bfca0327294') ORDER BY chat_entries.id DESC LIMIT 1
+Completed 200 OK in 124ms (Views: 117.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/chat_entries/latest/449163bc290149fd5ae4aa9e451c2bfca0327294" for 127.0.0.1 at Mon May 16 10:43:25 -0700 2011
+  Processing by ChatEntriesController#latest as 
+  Parameters: {"connectionId"=>"449163bc290149fd5ae4aa9e451c2bfca0327294"}
+  [1m[36mChatEntry Load (0.4ms)[0m  [1mSELECT "chat_entries".* FROM "chat_entries" WHERE (connectionId = '449163bc290149fd5ae4aa9e451c2bfca0327294') ORDER BY chat_entries.id DESC LIMIT 1[0m
+Completed 200 OK in 40ms (Views: 22.8ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/chat_entries/add" for 127.0.0.1 at Mon May 16 11:15:44 -0700 2011
+  Processing by ChatEntriesController#add as 
+  Parameters: {"body"=>"sadfasfsa", "connectionId"=>"afa373ff24b4269189919c6f8b9000786179af35"}
+  [1m[35mAREL (0.7ms)[0m  INSERT INTO "chat_entries" ("created_at", "body", "connectionId", "updated_at") VALUES ('2011-05-16 18:15:44.707310', 'sadfasfsa', 'afa373ff24b4269189919c6f8b9000786179af35', '2011-05-16 18:15:44.707310')
+Completed 200 OK in 28ms (Views: 12.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/chat_entries/latest/afa373ff24b4269189919c6f8b9000786179af35" for 127.0.0.1 at Mon May 16 11:15:44 -0700 2011
+  Processing by ChatEntriesController#latest as 
+  Parameters: {"connectionId"=>"afa373ff24b4269189919c6f8b9000786179af35"}
+  [1m[36mChatEntry Load (0.5ms)[0m  [1mSELECT "chat_entries".* FROM "chat_entries" WHERE (connectionId = 'afa373ff24b4269189919c6f8b9000786179af35') ORDER BY chat_entries.id DESC LIMIT 1[0m
+Completed 200 OK in 27ms (Views: 18.3ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/chat_entries/add" for 127.0.0.1 at Mon May 16 11:15:45 -0700 2011
+  Processing by ChatEntriesController#add as 
+  Parameters: {"body"=>"asdfdsaf", "connectionId"=>"afa373ff24b4269189919c6f8b9000786179af35"}
+  [1m[35mAREL (0.4ms)[0m  INSERT INTO "chat_entries" ("updated_at", "body", "created_at", "connectionId") VALUES ('2011-05-16 18:15:45.853453', 'asdfdsaf', '2011-05-16 18:15:45.853453', 'afa373ff24b4269189919c6f8b9000786179af35')
+Completed 200 OK in 108ms (Views: 10.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/chat_entries/latest/afa373ff24b4269189919c6f8b9000786179af35" for 127.0.0.1 at Mon May 16 11:15:45 -0700 2011
+  Processing by ChatEntriesController#latest as 
+  Parameters: {"connectionId"=>"afa373ff24b4269189919c6f8b9000786179af35"}
+  [1m[36mChatEntry Load (0.8ms)[0m  [1mSELECT "chat_entries".* FROM "chat_entries" WHERE (connectionId = 'afa373ff24b4269189919c6f8b9000786179af35') ORDER BY chat_entries.id DESC LIMIT 1[0m
+Completed 200 OK in 25ms (Views: 14.6ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/chat_entries/add" for 127.0.0.1 at Mon May 16 11:19:53 -0700 2011
+  Processing by ChatEntriesController#add as 
+  Parameters: {"connectionId"=>"75efb730cd4929c38753409eccf4c76aadf5ccd7"}
+  [1m[35mAREL (0.4ms)[0m  INSERT INTO "chat_entries" ("body", "connectionId", "created_at", "updated_at") VALUES (NULL, '75efb730cd4929c38753409eccf4c76aadf5ccd7', '2011-05-16 18:19:53.566970', '2011-05-16 18:19:53.566970')
+Completed 200 OK in 34ms (Views: 19.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/chat_entries/latest/75efb730cd4929c38753409eccf4c76aadf5ccd7" for 127.0.0.1 at Mon May 16 11:19:53 -0700 2011
+  Processing by ChatEntriesController#latest as 
+  Parameters: {"connectionId"=>"75efb730cd4929c38753409eccf4c76aadf5ccd7"}
+  [1m[36mChatEntry Load (0.4ms)[0m  [1mSELECT "chat_entries".* FROM "chat_entries" WHERE (connectionId = '75efb730cd4929c38753409eccf4c76aadf5ccd7') ORDER BY chat_entries.id DESC LIMIT 1[0m
+Completed 200 OK in 21ms (Views: 15.3ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/chat_entries/add" for 127.0.0.1 at Mon May 16 11:19:54 -0700 2011
+  Processing by ChatEntriesController#add as 
+  Parameters: {"connectionId"=>"75efb730cd4929c38753409eccf4c76aadf5ccd7"}
+  [1m[35mAREL (0.4ms)[0m  INSERT INTO "chat_entries" ("connectionId", "updated_at", "created_at", "body") VALUES ('75efb730cd4929c38753409eccf4c76aadf5ccd7', '2011-05-16 18:19:55.070749', '2011-05-16 18:19:55.070749', NULL)
+Completed 200 OK in 40ms (Views: 24.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/chat_entries/latest/75efb730cd4929c38753409eccf4c76aadf5ccd7" for 127.0.0.1 at Mon May 16 11:19:55 -0700 2011
+  Processing by ChatEntriesController#latest as 
+  Parameters: {"connectionId"=>"75efb730cd4929c38753409eccf4c76aadf5ccd7"}
+  [1m[36mChatEntry Load (0.5ms)[0m  [1mSELECT "chat_entries".* FROM "chat_entries" WHERE (connectionId = '75efb730cd4929c38753409eccf4c76aadf5ccd7') ORDER BY chat_entries.id DESC LIMIT 1[0m
+Completed 200 OK in 29ms (Views: 21.6ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/chat_entries/add" for 127.0.0.1 at Mon May 16 11:19:56 -0700 2011
+  Processing by ChatEntriesController#add as 
+  Parameters: {"body"=>"asdfdasf", "connectionId"=>"75efb730cd4929c38753409eccf4c76aadf5ccd7"}
+  [1m[35mAREL (0.4ms)[0m  INSERT INTO "chat_entries" ("created_at", "updated_at", "connectionId", "body") VALUES ('2011-05-16 18:19:56.409687', '2011-05-16 18:19:56.409687', '75efb730cd4929c38753409eccf4c76aadf5ccd7', 'asdfdasf')
+Completed 200 OK in 28ms (Views: 13.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/chat_entries/latest/75efb730cd4929c38753409eccf4c76aadf5ccd7" for 127.0.0.1 at Mon May 16 11:19:56 -0700 2011
+  Processing by ChatEntriesController#latest as 
+  Parameters: {"connectionId"=>"75efb730cd4929c38753409eccf4c76aadf5ccd7"}
+  [1m[36mChatEntry Load (0.5ms)[0m  [1mSELECT "chat_entries".* FROM "chat_entries" WHERE (connectionId = '75efb730cd4929c38753409eccf4c76aadf5ccd7') ORDER BY chat_entries.id DESC LIMIT 1[0m
+Completed 200 OK in 100ms (Views: 95.3ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/chat_entries/add" for 127.0.0.1 at Mon May 16 11:19:59 -0700 2011
+  Processing by ChatEntriesController#add as 
+  Parameters: {"body"=>"sadfdsafdas", "connectionId"=>"75efb730cd4929c38753409eccf4c76aadf5ccd7"}
+  [1m[35mAREL (0.4ms)[0m  INSERT INTO "chat_entries" ("body", "updated_at", "created_at", "connectionId") VALUES ('sadfdsafdas', '2011-05-16 18:19:59.597339', '2011-05-16 18:19:59.597339', '75efb730cd4929c38753409eccf4c76aadf5ccd7')
+Completed 200 OK in 33ms (Views: 17.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/chat_entries/latest/75efb730cd4929c38753409eccf4c76aadf5ccd7" for 127.0.0.1 at Mon May 16 11:19:59 -0700 2011
+  Processing by ChatEntriesController#latest as 
+  Parameters: {"connectionId"=>"75efb730cd4929c38753409eccf4c76aadf5ccd7"}
+  [1m[36mChatEntry Load (0.5ms)[0m  [1mSELECT "chat_entries".* FROM "chat_entries" WHERE (connectionId = '75efb730cd4929c38753409eccf4c76aadf5ccd7') ORDER BY chat_entries.id DESC LIMIT 1[0m
+Completed 200 OK in 22ms (Views: 16.1ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/chat_entries/add" for 127.0.0.1 at Mon May 16 11:20:02 -0700 2011
+  Processing by ChatEntriesController#add as 
+  Parameters: {"body"=>"asdfasf", "connectionId"=>"75efb730cd4929c38753409eccf4c76aadf5ccd7"}
+  [1m[35mAREL (0.4ms)[0m  INSERT INTO "chat_entries" ("updated_at", "body", "connectionId", "created_at") VALUES ('2011-05-16 18:20:02.135100', 'asdfasf', '75efb730cd4929c38753409eccf4c76aadf5ccd7', '2011-05-16 18:20:02.135100')
+Completed 200 OK in 27ms (Views: 10.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/chat_entries/latest/75efb730cd4929c38753409eccf4c76aadf5ccd7" for 127.0.0.1 at Mon May 16 11:20:02 -0700 2011
+  Processing by ChatEntriesController#latest as 
+  Parameters: {"connectionId"=>"75efb730cd4929c38753409eccf4c76aadf5ccd7"}
+  [1m[36mChatEntry Load (0.5ms)[0m  [1mSELECT "chat_entries".* FROM "chat_entries" WHERE (connectionId = '75efb730cd4929c38753409eccf4c76aadf5ccd7') ORDER BY chat_entries.id DESC LIMIT 1[0m
+Completed 200 OK in 116ms (Views: 110.1ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/chat_entries/add" for 127.0.0.1 at Mon May 16 11:20:03 -0700 2011
+  Processing by ChatEntriesController#add as 
+  Parameters: {"connectionId"=>"75efb730cd4929c38753409eccf4c76aadf5ccd7"}
+  [1m[35mAREL (0.4ms)[0m  INSERT INTO "chat_entries" ("updated_at", "created_at", "body", "connectionId") VALUES ('2011-05-16 18:20:03.608700', '2011-05-16 18:20:03.608700', NULL, '75efb730cd4929c38753409eccf4c76aadf5ccd7')
+Completed 200 OK in 29ms (Views: 14.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/chat_entries/latest/75efb730cd4929c38753409eccf4c76aadf5ccd7" for 127.0.0.1 at Mon May 16 11:20:03 -0700 2011
+  Processing by ChatEntriesController#latest as 
+  Parameters: {"connectionId"=>"75efb730cd4929c38753409eccf4c76aadf5ccd7"}
+  [1m[36mChatEntry Load (0.4ms)[0m  [1mSELECT "chat_entries".* FROM "chat_entries" WHERE (connectionId = '75efb730cd4929c38753409eccf4c76aadf5ccd7') ORDER BY chat_entries.id DESC LIMIT 1[0m
+Completed 200 OK in 32ms (Views: 23.6ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/chat_entries/add" for 127.0.0.1 at Mon May 16 11:21:35 -0700 2011
+  Processing by ChatEntriesController#add as 
+  Parameters: {"body"=>"asdfadsfas", "connectionId"=>"e390590faa0fbd5746216ff8d7c779c298a45ff3"}
+  [1m[35mAREL (0.4ms)[0m  INSERT INTO "chat_entries" ("created_at", "connectionId", "updated_at", "body") VALUES ('2011-05-16 18:21:36.008227', 'e390590faa0fbd5746216ff8d7c779c298a45ff3', '2011-05-16 18:21:36.008227', 'asdfadsfas')
+Completed 200 OK in 29ms (Views: 12.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/chat_entries/latest/e390590faa0fbd5746216ff8d7c779c298a45ff3" for 127.0.0.1 at Mon May 16 11:21:36 -0700 2011
+  Processing by ChatEntriesController#latest as 
+  Parameters: {"connectionId"=>"e390590faa0fbd5746216ff8d7c779c298a45ff3"}
+  [1m[36mChatEntry Load (0.4ms)[0m  [1mSELECT "chat_entries".* FROM "chat_entries" WHERE (connectionId = 'e390590faa0fbd5746216ff8d7c779c298a45ff3') ORDER BY chat_entries.id DESC LIMIT 1[0m
+Completed 200 OK in 95ms (Views: 15.5ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/chat_entries/add" for 127.0.0.1 at Mon May 16 11:21:37 -0700 2011
+  Processing by ChatEntriesController#add as 
+  Parameters: {"body"=>"asdfasf", "connectionId"=>"e390590faa0fbd5746216ff8d7c779c298a45ff3"}
+  [1m[35mAREL (0.4ms)[0m  INSERT INTO "chat_entries" ("connectionId", "updated_at", "body", "created_at") VALUES ('e390590faa0fbd5746216ff8d7c779c298a45ff3', '2011-05-16 18:21:37.956188', 'asdfasf', '2011-05-16 18:21:37.956188')
+Completed 200 OK in 31ms (Views: 13.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/chat_entries/latest/e390590faa0fbd5746216ff8d7c779c298a45ff3" for 127.0.0.1 at Mon May 16 11:21:38 -0700 2011
+  Processing by ChatEntriesController#latest as 
+  Parameters: {"connectionId"=>"e390590faa0fbd5746216ff8d7c779c298a45ff3"}
+  [1m[36mChatEntry Load (0.4ms)[0m  [1mSELECT "chat_entries".* FROM "chat_entries" WHERE (connectionId = 'e390590faa0fbd5746216ff8d7c779c298a45ff3') ORDER BY chat_entries.id DESC LIMIT 1[0m
+Completed 200 OK in 23ms (Views: 15.7ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/chat_entries/add" for 127.0.0.1 at Mon May 16 11:21:39 -0700 2011
+  Processing by ChatEntriesController#add as 
+  Parameters: {"body"=>"asdfsdaf", "connectionId"=>"e390590faa0fbd5746216ff8d7c779c298a45ff3"}
+  [1m[35mAREL (0.7ms)[0m  INSERT INTO "chat_entries" ("body", "created_at", "connectionId", "updated_at") VALUES ('asdfsdaf', '2011-05-16 18:21:39.367736', 'e390590faa0fbd5746216ff8d7c779c298a45ff3', '2011-05-16 18:21:39.367736')
+Completed 200 OK in 36ms (Views: 17.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/chat_entries/latest/e390590faa0fbd5746216ff8d7c779c298a45ff3" for 127.0.0.1 at Mon May 16 11:21:39 -0700 2011
+  Processing by ChatEntriesController#latest as 
+  Parameters: {"connectionId"=>"e390590faa0fbd5746216ff8d7c779c298a45ff3"}
+  [1m[36mChatEntry Load (0.5ms)[0m  [1mSELECT "chat_entries".* FROM "chat_entries" WHERE (connectionId = 'e390590faa0fbd5746216ff8d7c779c298a45ff3') ORDER BY chat_entries.id DESC LIMIT 1[0m
+Completed 200 OK in 24ms (Views: 17.1ms | ActiveRecord: 0.5ms)
