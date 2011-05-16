@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ruby on Rails: Welcome aboard</title>
+
+		<!-- jQuery -->
+		<script src="http://code.jquery.com/jquery-1.6.1.min.js" type="text/javascript"></script>
+		
+		<!-- OpenTOk JS API -->
+		<script src="http://staging.tokbox.com/v0.91/js/TB.min.js" type="text/javascript"></script>
+		
+		<!-- Classes I created for handling stream layout, blog post here: http://blog.mumm.me/?p=5 -->
+		<script src="http://jonmumm.github.com/OpenTok-JS-LayoutContainer/OT_LayoutContainer.js" type="text/javascript"></script>
+		<script src="javascripts/OT_Widget.js" type="text/javascript" ></script>
+
+		<!-- Application Code -->
+		<script type='text/javascript'>
+		
+			// Public vars
+			var session;
+		
+			// Initialize OpenTok stuff
+			(function() {
+				var apiKey = 1127; // OpenTok sample API key. Replace with your own API key.
+				var sessionId = '287a9e4ad0aa8e501309df11fe53831452fa1167'; // Replace with your session ID.
+				var token = 'devtoken'; // Should not be hard-coded.
+
+				session = TB.initSession(sessionId);
+
+				// This class does all the layout management for us
+				OT_Widget.init(session, "streamContainer", 800, 300);
+				
+				session.addEventListener("signalReceived", signalReceivedHandler);
+				session.connect(apiKey, token);
+			})();
+		
+			// Event handler for receiving signals called by session.signal() from other clients in session
+			function signalReceivedHandler(event) {
+				getChatEntry(event.fromConnection.connectionId);
+			}
+			
+			// Posts a new chat entry in to the database
+			function postChatEntry() {
+				// If body is empty, don't do anything
+				if (!$("#chatBody").val()) return;
+				
+				var data = {
+					connectionId: session.connection.connectionId,
+					body: $("#chatBody").val()
+				}
+				
+				$.ajax({
+					url: '/chat_entries/add',
+					data: data,
+					type: 'POST',
+					success: function(data) {
+						session.signal();
+					}
+				})
+				
+				// Clear the text input
+				$("#chatBody").val('');
+			}
+			
+			// Gets the latest chat entry from the database given somebody's connectionId
+			function getChatEntry(connectionId) {
+				$.ajax({
+					url: '/chat_entries/latest/' + connectionId,
+					success: function(data) {
+						$("#chat").append("<li><strong>" + data.chat_entry.connectionId + ":</strong> " + data.chat_entry.body + "</li>")
+					}
+				})
+			}
+			
+			// Initialize UI bindings
+			$(window).load(function() {
+				// Add chat entry if enter button clicked
+				$("#chatButton").bind('click', function() {
+					postChatEntry();
+				});
+				
+				// Add chat entry if enter pressed in text box
+				$("#chatBody").keypress(function(e) {
+					if (e.keyCode == 13) {
+						postChatEntry();
+					}
+				})
+			})
+		</script>
+		
+  </head>
+  <body>
+		<div id="streamContainer" style="background: black;"></div>
+		<h2>Chat</h2>
+		<ul id="chat">
+			
+		</ul>
+		<input type="text" id="chatBody" />
+		<button id="chatButton">Enter</button>
+  </body>
+</html>
